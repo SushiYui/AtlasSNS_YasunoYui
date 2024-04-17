@@ -52,12 +52,13 @@ class RegisterController extends Controller
                 'password' => bcrypt($password),
             ]);
 
-            return redirect('added');
+            return redirect('added')->with('username',$username);
         }
         return view('auth.register');
     }
 
-    public function added(){
-        return view('auth.added');
+    public function added(Request $request){
+        $username = $request->session()->get('username');
+        return view('auth.added')->with(compact('username'));
     }
 }

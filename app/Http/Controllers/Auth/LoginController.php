@@ -40,6 +40,7 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
+
         if($request->isMethod('post')){
 
             $data=$request->only('mail','password');
