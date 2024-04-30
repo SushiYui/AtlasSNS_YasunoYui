@@ -5,6 +5,7 @@ body{
 }
 /* header */
 header{
+    position: relative;
     background:#186AC9;
 }
 
@@ -19,4 +20,29 @@ header{
 #side-bar{
     flex: 0 0 19%;
     border-left: 1px solid #727272;
+}
+
+/* pulldownドロップダウンメニュー */
+/* メニューが閉じてあるとき */
+.pulldown{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    height: 10px;
+    margin: auto;
+    display: block;
+    border-left: 2px solid black;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    border-bottom: 2px solid black;
+    right: 10px;
+}
+.pulldown-box{
+    display: none;
+    margin:0 auto;
+}
+/* メニューがクリックされて開かれたとき */
+.pulldown.open{
+    transform: rotate(135deg);
 }

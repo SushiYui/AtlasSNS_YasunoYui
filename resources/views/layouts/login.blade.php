@@ -27,10 +27,14 @@
                 <div id="">
                     <p>〇〇さん<img src="images/arrow.png"></p>
                 <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
+                    <div class="pulldown">
+                    <!-- <span class="left"></span>
+                    <span class="right"></span> -->
+                    </div>
+                <ul class="pulldown-box">
+                    <li class=pulldown-menu><a href="/top">ホーム</a></li>
+                    <li class=pulldown-menu><a href="/profile">プロフィール</a></li>
+                    <li class=pulldown-menu><a href="/logout">ログアウト</a></li>
                 </ul>
             </div>
         </div>
@@ -58,7 +62,7 @@
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="{{ asset('js/login.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 </body>
 </html>
