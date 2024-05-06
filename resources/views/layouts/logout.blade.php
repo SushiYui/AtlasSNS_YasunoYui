@@ -27,7 +27,7 @@
   <div id="container">
     @yield('content')
   </div>
-  <script src="JavaScriptファイルのURL"></script>
-  <script src="JavaScriptファイルのURL"></script>
+  <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+  <script src="{{ asset('js/login.js') }}"></script>
 </body>
 </html>

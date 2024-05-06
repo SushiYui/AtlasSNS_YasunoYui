@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
     <!--IEブラウザ対策-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="ページの内容を表す文章" />
+    <meta name="description" content="topページ" />
     <title></title>
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
@@ -22,10 +22,10 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
+        <h1><a><img src="images/atlas.png"></a></h1>
             <div id="">
                 <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
+                    <p>{{ Auth::user()->username }}さん<img src="images/icon1.png"></p>
                 <div>
                     <div class="pulldown">
                     <!-- <span class="left"></span>
@@ -45,7 +45,7 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
                 <p>〇〇名</p>
@@ -62,7 +62,7 @@
     </div>
     <footer>
     </footer>
-    <script src="{{ asset('js/login.js') }}"></script>
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('js/login.js') }}"></script>
 </body>
 </html>
