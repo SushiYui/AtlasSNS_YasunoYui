@@ -26,4 +26,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    // $thisはFollowモデルのインスタンス（データを示す）
+    // 自分がフォローしているユーザーとの繋がりを取得している
+    public function isFollowing($user_id)
+    {
+        return (boolean) $this->follows()->where('followed_id', $user_id)->exists();
+    }
+    // 自分がフォローされているユーザーとの繋がりを取得している
+    public function isFollowed($user_id)
+    {
+        return (boolean) $this->followers()->where('following_id', $user_id)->exists();
+    }
 }
