@@ -22,6 +22,11 @@ header{
     border-left: 1px solid #727272;
 }
 
+/* Atlasにカーソルを持ってくるとポインターになる。 */
+.title{
+    cursor: pointer;
+}
+
 /* pulldownドロップダウンメニュー */
 /* メニューが閉じてあるとき */
 .pulldown{

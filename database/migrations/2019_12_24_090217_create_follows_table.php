@@ -21,10 +21,10 @@ class CreateFollowsTable extends Migration
             $table->timestamp('updated_at')->default(DB::raw('current_timestamp on update current_timestamp'));
 
             // クエリのパフォーマンス向上のために下記3文追加
-            $table->index('following_id');
-            $table->index('followed_id');
+            // $table->index('following_id');
+            // $table->index('followed_id');
 
-            $table->unique(['following_id','followed_id']);
+            // $table->unique(['following_id','followed_id']);
         });
     }
 
