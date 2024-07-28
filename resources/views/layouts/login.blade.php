@@ -25,7 +25,7 @@
         <h1 class="title"><a href="/top"><img src="images/atlas.png"></a></h1>
             <div id="">
                 <div id="">
-                    <p>{{ Auth::user()->username }}さん<img src="images/icon1.png"></p>
+                    <p>{{ Auth::user()->username }}さん<img src="{{ asset('storage/images/' . Auth::user()->images) }}" class= "photo-size"></p>
                 <div>
                     <div class="pulldown">
                     <!-- <span class="left"></span>
@@ -33,7 +33,7 @@
                     </div>
                 <ul class="pulldown-box">
                     <li class=pulldown-menu><a href="/top">ホーム</a></li>
-                    <li class=pulldown-menu><a href="/profile">プロフィール</a></li>
+                    <li class=pulldown-menu><a href="/users/profile">プロフィール</a></li>
                     <li class=pulldown-menu><a href="/logout">ログアウト</a></li>
                 </ul>
             </div>
@@ -48,14 +48,14 @@
                 <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>○○名</p>
+                <p>{{ Auth::user()->follows->count() }}名</p>
                 </div>
-                <button class="btn"><a href="/followList">フォローリスト</a></button>
+                <button class="btn"><a href="/follows/followList">フォローリスト</a></button>
                 <div>
                 <p>フォロワー数</p>
-                <p> ○○名</p>
+                <p> {{ Auth::user()->followers->count() }}名</p>
                 </div>
-                <button class="btn"><a href="/followerList">フォロワーリスト</a></button>
+                <button class="btn"><a href="/follows/followerList">フォロワーリスト</a></button>
             </div>
             <button class="btn"><a href="/users/search">ユーザー検索</a></button>
         </div>
