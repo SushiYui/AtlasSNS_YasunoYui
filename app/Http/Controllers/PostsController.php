@@ -15,9 +15,9 @@ class PostsController extends Controller
 
         $results = DB::table('users')
         ->join('posts', 'users.id', '=', 'posts.user_id')
-        ->select('users.username', 'posts.id' , 'posts.user_id' , 'posts.post')
+        ->select('users.username', 'images', 'posts.id' , 'posts.user_id', 'posts.created_at', 'posts.post')
         ->get();
-        // dd($result);
+        // dd($results);
 
         return view('posts.index')->with(compact('results'));
     }
@@ -25,7 +25,7 @@ class PostsController extends Controller
 
     public function tweet(Request $request){
         if($request->isMethod('post')){
-            
+
             // ログインしているユーザー情報も取ってくる
             $user = Auth::user();
             $post = $request->input('content');
@@ -42,24 +42,27 @@ class PostsController extends Controller
     }
 
 
-    // *** 編集画面の表示  
-    public function edit(Post $post){
+    // *** 編集画面の表示
+    public function edit($id){
 
-        return view('posts.edit',compact('post'));
+        $post = Post::findOrFail($id);
+
+        return view('edit',compact('post'));
     }
 
     // *** 更新処理
-    public function update(Request $request, Post $post){
+    public function update(Request $request, $id){
 
         $request->validate([
             'content' => 'required|max:150',
         ]);
 
+        $post = Post::findOrFail($id);
         $post->post = $request->input('content');
         $post->save();
 
-        return redirect()->route('top');
-    } 
+        return redirect('/top');
+    }
 
 
 

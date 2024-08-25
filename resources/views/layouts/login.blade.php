@@ -21,22 +21,23 @@
 </head>
 <body>
     <header>
-        <div id = "head">
-        <h1 class="title"><a href="/top"><img src="images/atlas.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>{{ Auth::user()->username }}さん<img src="{{ asset('storage/images/' . Auth::user()->images) }}" class= "photo-size"></p>
-                <div>
-                    <div class="pulldown">
-                    <!-- <span class="left"></span>
-                    <span class="right"></span> -->
-                    </div>
+        <div class="header-wrapper">
+           <h1 class="title"><a href="/top"><img src="images/atlas.png" class="title-logo"></a></h1>
+        <div class="header-content">
+          <div class="login-user">
+            <p class="login-username">{{ Auth::user()->username }}さん</p>
+            <a href="/top" class="login-photo"><img src="{{ asset('storage/images/' . Auth::user()->images) }}" class= "photo-size"></a>
+          </div>
+
+            <div class="pulldown-content">
+                <div class="pulldown"></div>
                 <ul class="pulldown-box">
                     <li class=pulldown-menu><a href="/top">ホーム</a></li>
                     <li class=pulldown-menu><a href="/users/profile">プロフィール</a></li>
                     <li class=pulldown-menu><a href="/logout">ログアウト</a></li>
                 </ul>
             </div>
+        </div>
         </div>
     </header>
     <div id="row">
@@ -46,18 +47,21 @@
         <div id="side-bar">
             <div id="confirm">
                 <p>{{ Auth::user()->username }}さんの</p>
-                <div>
+                
+                <div class="side-count">
                 <p>フォロー数</p>
                 <p>{{ Auth::user()->follows->count() }}名</p>
                 </div>
-                <button class="btn"><a href="/follows/followList">フォローリスト</a></button>
-                <div>
+                <a href="/follows/followList" class="side-btn">フォローリスト</a>
+
+                <div class="side-count">
                 <p>フォロワー数</p>
                 <p> {{ Auth::user()->followers->count() }}名</p>
                 </div>
-                <button class="btn"><a href="/follows/followerList">フォロワーリスト</a></button>
+
+                <a href="/follows/followerList" class="side-btn">フォロワーリスト</a>
             </div>
-            <button class="btn"><a href="/users/search">ユーザー検索</a></button>
+            <a href="/users/search" class="side-btn center-btn">ユーザー検索</a>
         </div>
     </div>
     <footer>

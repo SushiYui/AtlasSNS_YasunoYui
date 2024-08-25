@@ -114,7 +114,6 @@ class UsersController extends Controller
         // findOrFile⇒指定した主キーを使ってレコードを取得する
         $user = User::findOrFail($id);
 
-        dd($user);
         return view('users.friendProfile', compact('user'));
     }
     

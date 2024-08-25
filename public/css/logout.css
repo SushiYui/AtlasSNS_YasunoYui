@@ -5,6 +5,103 @@ html{
 }
 
 body{
-    height: 100%;
-    background: #186AC9;
+    display: flex;
+    justify-content: center;
+    /* フレックスアイテムが主軸に沿って上から下に配置される */
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+    background-image:linear-gradient(0deg, rgb(252, 252, 123), rgb(71, 211, 249));
+}
+
+.main-title{
+    display: block;
+    width: 110px;
+    margin: 0 auto;
+}
+
+.subtitle{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.login-form{
+    border-radius: 20px;
+    width: 35%;
+    max-width: 280px;
+    margin-top: 20px;
+    padding: 25px;
+    background:rgba(100,149,237,0.3);
+}
+
+.welcome{
+    text-align: center;
+}
+
+
+.text{
+    font-size: 0.7em;
+    color: white;
+    border-bottom: 1px solid white;
+    margin: 0 auto;
+}
+
+.input{
+    margin-top: 5px;
+    width: 100%;
+    max-width: 300px;
+    padding: 7px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-title{
+    margin-top: 15px;
+}
+
+input[type="submit"], .btn{
+    margin: 15px 0;
+    background-color: #4169e1;
+    color: aliceblue;
+    width: 40%;
+    border-radius: 5px;
+    padding: 5px 5px;
+    border: 1px solid #4169e1;
+}
+
+input[type="submit"]:hover{
+    background-color: aliceblue;
+    color: #4169e1;
+    font-weight: bold;
+    border: 1px solid aliceblue;
+    box-shadow: 2px 2px 4px;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.register-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.welcome-box{
+    margin: 40px 0;
+}
+
+.welcome-text{
+    margin: 15px 0;
+}
+
+.btn:hover{
+    background-color: aliceblue;
+    color: #4169e1;
+    font-weight: bold;
+    border: 1px solid aliceblue;
+    box-shadow: 2px 2px 4px;
 }

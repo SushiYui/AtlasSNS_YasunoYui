@@ -43,9 +43,9 @@ Route::post('/index','PostsController@tweet')->middleware('auth');
 // Route::get('/top','FollowsController@show')->middleware('auth');
 
 // 編集画面を表示
-Route::get('/post/{post}/edit','PostsController@edit')->name('post.edit')->middleware('auth');
+Route::get('/post/{id}/edit','PostsController@edit')->name('post.edit')->middleware('auth');
 Route::resource('post', 'PostController');
-Route::post('/post/{post}/update','PostsController@update')->name('post.update')->middleware('auth');
+Route::put('/post/{id}/edit','PostsController@update')->name('post.update')->middleware('auth');
 
 // 投稿削除
 Route::get('/post/{post}/delete','PostsController@delete')->name('post.delete')->middleware('auth');
@@ -63,6 +63,9 @@ Route::view('/followedList', 'followedList')->middleware('auth');
 
 // 相手のprofileを表示
 Route::get('/users/{id}/friendProfile', 'UsersController@show')->middleware('auth');
+// 相手のprofileで投稿を一覧で表示
+Route::get('/users/{id}/friendProfile', 'FollowsController@tweetList')->middleware('auth');
+
 
 // 検索フォームを表示
 Route::get('/users/search','UsersController@search')->middleware('auth');

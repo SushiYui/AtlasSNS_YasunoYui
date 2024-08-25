@@ -25,3 +25,28 @@ $(window).on('load', function(){
     });
   });
 
+
+//   .edit-btnがbuttonであることを定義している
+  document.querySelectorAll('.edit-btn').forEach(button => {
+    button.addEventListener('click', () => {
+
+        const postId = button.getAttribute('data-id');
+        const postContent = button.getAttribute('data-content');
+
+        // document.getElementById('content').text = postContent;
+        // document.getElementById('edit-form').action = '/post/' + postId + '/edit';
+
+        // モーダル内のテキストエリアに投稿内容を設定
+        document.getElementById('content').value = postContent;
+
+        // フォームのaction属性を設定
+        document.getElementById('edit-form').action = '/post/' + postId + '/edit' ;
+
+        // モーダルを表示
+        document.getElementById('edit-modal').style.display = 'block';
+    });
+});
+
+// document.getElementById('close-modal').addEventListener('click', () => {
+//     document.getElementById('edit-modal').style.display = 'none';
+// });

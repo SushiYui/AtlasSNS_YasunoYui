@@ -24,5 +24,16 @@
 @endif
    {!! Form::close() !!}
 
+   <div class="tweet-list">
+     <ul>
+        @foreach ( $posts as $post )
+
+        <li><img src="{{ asset('storage/images/' . $post->user->images) }}" class= "photo-size"></li>
+        <li>{{ $post->user->username }}</li>
+        <li>{{ $post->post }}</li>
+
+        @endforeach
+     </ul>
+   </div>
 
 @endsection

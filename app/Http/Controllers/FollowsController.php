@@ -16,7 +16,7 @@ class FollowsController extends Controller
 
         // Followモデルを使用してAuth::id()（今ログインしている人）がフォローしている人を見つけている。
         // $id（特定のユーザー）がフォローされているかどうかを調べている
-        $check = Follow::where('following_id', Auth::id() )->where('followed_id', $id); 
+        $check = Follow::where('following_id', Auth::id() )->where('followed_id', $id);
 
         if($check->count() == 0){
 
@@ -32,7 +32,7 @@ class FollowsController extends Controller
 
     // フォロー処理実装
     public function following(Request $request){
-        dd($request);
+        // dd($request);
 
         // 今フォローしている人：Auth::id()がフォローしたいユーザーのID：$request->idを
         // すでにフォローしているのかチェックしている
@@ -52,7 +52,7 @@ class FollowsController extends Controller
 
     // フォローを外す
     public function unFollowing(Request $request){
-        dd($request);
+        // dd($request);
 
         $unFollowing = Follow::where('following_id',Auth::id())->where('followed_id', $request->id)->delete();
 
@@ -89,7 +89,7 @@ class FollowsController extends Controller
 
         return view('follows.followList', compact('followingList','posts'));
     }
-    
+
     // フォローしてくれた人の一覧表示
     public function friend(User $user){
         $user = auth()->user();
@@ -103,6 +103,17 @@ class FollowsController extends Controller
         ->get();
 
         return view('follows.followerList', compact('followedList' , 'posts'));
+
+    }
+
+    public function tweetList($id){
+
+        $posts = Post::where('user_id', $id)
+        ->orderBy('created_at' , 'desc')->with('user')->get();
+
+        $user = User::find($id);
+
+        return view('users.friendProfile', compact('posts', 'user'));
 
     }
 

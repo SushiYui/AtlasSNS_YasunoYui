@@ -21,12 +21,12 @@
 </head>
 <body>
   <header>
-    <h1><a href="posts/index"><img src="images/atlas.png"></a></h1>
-    <p>Social Network Service</p>
+    <div class="main-area">
+    <a href="posts/index"><img src="images/atlas.png" class="main-title"></a>
+    <p class="subtitle">Social Network Service</p>
+    </div>
   </header>
-  <div id="container">
     @yield('content')
-  </div>
   <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
   <script src="{{ asset('js/login.js') }}"></script>
 </body>
