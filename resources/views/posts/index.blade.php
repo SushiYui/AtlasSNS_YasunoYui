@@ -14,14 +14,18 @@
     @foreach ($results as $result)
     <div class="post-list">
 
+    <div class="post-content">
        <div class="post-img"><img src="{{ asset('storage/images/' . $result->images) }}" class= "photo-size"></div>
+       <div class="post-box">
        <p class="username">{{ $result->username }}</p>
        <p class="post-time">{{ \Carbon\Carbon::parse($result->created_at)->format('Y-m-d H:i') }}</p>
        <p class="post">{{ $result->post }}</p>
+       </div>
+    </div>
 
     <!-- 自分の投稿のみ表示されるように制限をかける -->
+    @if(Auth::user()->id === $result->user_id)
     <div class="post-btn">
-       @if(Auth::user()->id === $result->user_id)
     <!-- 編集ボタン -->
        <a data-id ="{{ $result->id }}" data-content="{{ $result->post }}" class="edit-btn">
        <img src="{{ asset('images/edit.png') }}" alt="edit Icon" class="hover-image">
@@ -31,7 +35,7 @@
     </div>
 
     @endif
-</div>
+    </div>
 
     @endforeach
 

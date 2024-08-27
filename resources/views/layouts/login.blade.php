@@ -47,7 +47,7 @@
         <div id="side-bar">
             <div id="confirm">
                 <p>{{ Auth::user()->username }}さんの</p>
-                
+
                 <div class="side-count">
                 <p>フォロー数</p>
                 <p>{{ Auth::user()->follows->count() }}名</p>

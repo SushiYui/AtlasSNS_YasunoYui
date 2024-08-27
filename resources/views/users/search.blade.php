@@ -5,7 +5,7 @@
 <div class="search-box">
 {!! Form::open(['url' => '/users/search', 'method' => 'GET']) !!}
    {!! Form::text('keyword', null, ['placeholder' => 'ユーザー名']) !!}
-   {!! Form::image(asset('images/search.png'), 'submit', ['class' => 'image-submit']) !!}
+   {!! Form::image(asset('images/search.png'), 'submit', ['class' => 'search-submit']) !!}
    {!! Form::close() !!}
 
 <p>{{ $keyword }}</p>
