@@ -22,7 +22,8 @@
 <body>
     <header>
         <div class="header-wrapper">
-           <h1 class="title"><a href="/top"><img src="images/atlas.png" class="title-logo"></a></h1>
+           <h1 class="title"><a href="/top"><img src="{{ asset('images/atlas.png') }}" class="title-logo">
+           </a></h1>
         <div class="header-content">
           <div class="login-user">
             <p class="login-username">{{ Auth::user()->username }}さん</p>

@@ -47,6 +47,19 @@ $(window).on('load', function(){
     });
 });
 
-// document.getElementById('close-modal').addEventListener('click', () => {
-//     document.getElementById('edit-modal').style.display = 'none';
-// });
+// モーダルの枠外をクリックすると編集機能をキャンセルできるようにする
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('edit-modal');
+    const modalContent = document.querySelector('.modal-content');
+
+    // モーダル枠外をクリックするとキャンセルする処理
+    modal.addEventListener('click', function(event) {
+        if (!modalContent.contains(event.target)) {
+            modal.style.display = 'none';
+        }
+    });
+});
+
+
+
+

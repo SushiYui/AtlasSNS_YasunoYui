@@ -5,11 +5,11 @@
 <div class="followList">
     <h1 class="followTitle">フォロワーリスト</h1>
 
-    <ul>
+    <div class="followUser">
         @foreach($followedList as $followed)
         <li><a href="{{  url('/users/' . $followed->id . '/friendProfile') }}" id="{{ $followed->id }}"><img src="{{ asset('storage/images/' . $followed->images) }}" class= "photo-size"></a></li>
         @endforeach
-    </ul>
+    </div>
 </div>
 
 

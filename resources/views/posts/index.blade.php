@@ -5,7 +5,7 @@
 <!-- Form::openは、新しいフォームを開始し、URLやメソッドなどの基本的な設定を行う。 -->
 <img src="{{ asset('storage/images/' . Auth::user()->images) }}" class= "photo-size">
 {!! Form::open(['url' => '/index' , 'method' => 'POST' , 'class' => 'tweet'])!!}
-{!! Form::textarea('content', null, ['placeholder' => '投稿内容を入力してください' , 'maxlength'=>"200"]) !!}
+{!! Form::textarea('content', null, ['placeholder' => '投稿内容を入力してください' , 'maxlength'=>"150"]) !!}
 {!! Form::image(asset('images/post.png'), 'submit', ['class' => 'image-submit']) !!}
 {!! Form::close() !!}
 </div>
@@ -31,8 +31,12 @@
        <img src="{{ asset('images/edit.png') }}" alt="edit Icon" class="hover-image">
        </a>
     <!-- 削除ボタン -->
-       <a href="/post/{$post->id}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか。')"><img src="{{ asset('images/trash.png') }}" alt="trash Icon" class="btn_delete"></a>
+       <a href="/post/{$post->id}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか。')" class="delete-box">
+        {{-- <img src="{{ asset('images/trash.png') }}" alt="trash Icon" class="btn_delete"> --}}
+        {{-- <img src="{{ asset('images/trash-h.png') }}" alt="trash Icon" class="btn_delete hover"> --}}
+       </a>
     </div>
+
 
     @endif
     </div>
@@ -46,9 +50,10 @@
         @csrf
         {{-- 投稿の更新（編集）を示す --}}
         @method('PUT')
-        {!! Form::textarea('content', null, ['rows' => 10, 'cols' => 50, 'id'=>'content'] ) !!}
-        {!! Form::submit('保存') !!}
-        {!! Form::submit('キャンセル') !!}
+        {!! Form::textarea('content', null, ['rows' => 10, 'cols' => 50, 'id'=>'content', 'maxlength' => 150] ) !!}
+        <div class="edit-box">
+        {!! Form::image(asset('images/edit.png'), 'submit', ['class' => 'edit-submit']) !!}
+        </div>
         {!! Form::close() !!}
     </div>
 </div>
