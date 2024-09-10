@@ -5,7 +5,8 @@
 <!-- Form::openは、新しいフォームを開始し、URLやメソッドなどの基本的な設定を行う。 -->
 <img src="{{ asset('storage/images/' . Auth::user()->images) }}" class= "photo-size">
 {!! Form::open(['url' => '/index' , 'method' => 'POST' , 'class' => 'tweet'])!!}
-{!! Form::textarea('content', null, ['placeholder' => '投稿内容を入力してください' , 'maxlength'=>"150"]) !!}
+{!! Form::textarea('content', null, ['placeholder' => '投稿内容を入力してください' ,
+'requied' => true, 'minlength' => "1", 'maxlength'=>"150"]) !!}
 {!! Form::image(asset('images/post.png'), 'submit', ['class' => 'image-submit']) !!}
 {!! Form::close() !!}
 </div>
@@ -31,11 +32,8 @@
        <img src="{{ asset('images/edit.png') }}" alt="edit Icon" class="hover-image">
        </a>
     <!-- 削除ボタン -->
-       <a href="/post/{$post->id}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか。')" class="delete-box">
-        {{-- <img src="{{ asset('images/trash.png') }}" alt="trash Icon" class="btn_delete"> --}}
-        {{-- <img src="{{ asset('images/trash-h.png') }}" alt="trash Icon" class="btn_delete hover"> --}}
-       </a>
-    </div>
+    <a class="delete-box" href="/post/{{ $result->id }}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"></a>
+　　</div>
 
 
     @endif

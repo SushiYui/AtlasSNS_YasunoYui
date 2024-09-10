@@ -30,7 +30,7 @@ Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/added', 'Auth\RegisterController@added');
-Route::post('/added', 'Auth\RegisterController@added');
+// Route::post('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
 Route::get('/top','PostsController@index')->middleware('auth');
@@ -48,7 +48,7 @@ Route::resource('post', 'PostController');
 Route::put('/post/{id}/edit','PostsController@update')->name('post.update')->middleware('auth');
 
 // 投稿削除
-Route::get('/post/{post}/delete','PostsController@delete')->name('post.delete')->middleware('auth');
+Route::get('/post/{id}/delete','PostsController@delete')->name('post.delete')->middleware('auth');
 
 // // bladeからbladeのページ遷移もルーティングが必要
 // Route::view('/follows/followList', '/follows/followList')->middleware('auth');

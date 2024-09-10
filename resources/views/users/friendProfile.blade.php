@@ -3,14 +3,22 @@
 @section('content')
 
 <div class="followList">
-    <p>相手のprofile表示</p>
     <img src="{{ asset('storage/images/' . $user->images) }}" class= "photo-size">
-    <p>{{ $user->username }}</p>
-    <p>{{ $user->bio }}</p>
+<div class="friend-content">
+<div class="friend-box">
+    <p>ユーザー名</p>
+    <p class="friend-text">{{ $user->username }}</p>
 </div>
+<div class="friend-box">
+    <p>自己紹介</p>
+    <p class="friend-text">{{ $user->bio }}</p>
+</div>
+</div>
+
 
 <!-- フォローボタンの作成 -->
 <!-- ⇒もしログインユーザーがフォロー中なら、フォロー解除ボタンを表示する。（フォロー前ならフォローするボタンを表示する。） -->
+<div class="friend-follow">
 @if(auth()->user()->isFollowing($user->id))
    {!! Form::open(['url' => '/users/unfollow' , 'method' => 'POST']) !!}
    {!! Form::hidden('id', $user->id) !!}
@@ -23,17 +31,22 @@
    {!! Form::submit('フォローする') !!}
 @endif
    {!! Form::close() !!}
+</div>
 
-   <div class="tweet-list">
-     <ul>
-        @foreach ( $posts as $post )
+</div>
 
-        <li><img src="{{ asset('storage/images/' . $post->user->images) }}" class= "photo-size"></li>
-        <li>{{ $post->user->username }}</li>
-        <li>{{ $post->post }}</li>
 
-        @endforeach
-     </ul>
-   </div>
+@foreach($posts as $post)
+<div class="post-list">
+    <div class="post-content">
+        <div class="post-img"><img src="{{ asset('storage/images/' . $post->user->images) }}" class= "photo-size"></div>
+        <div class="post-box">
+        <p class="username">{{ $post->user->username }}</p>
+        <p class="post-time">{{ \Carbon\Carbon::parse($post->created_at)->format('Y-m-d H:i') }}</p>
+        <p class="post">{{ $post->post }}</p>
+        </div>
+    </div>
+</div>
+@endforeach
 
 @endsection

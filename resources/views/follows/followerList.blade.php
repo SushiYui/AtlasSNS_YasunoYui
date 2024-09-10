@@ -7,13 +7,16 @@
 
     <div class="followUser">
         @foreach($followedList as $followed)
-        <li><a href="{{  url('/users/' . $followed->id . '/friendProfile') }}" id="{{ $followed->id }}"><img src="{{ asset('storage/images/' . $followed->images) }}" class= "photo-size"></a></li>
+        @if(auth()->user()->id !== $followed->id)
+        <a href="{{  url('/users/' . $followed->id . '/friendProfile') }}" id="{{ $followed->id }}"><img src="{{ asset('storage/images/' . $followed->images) }}" class= "photo-size"></a>
+        @endif
         @endforeach
     </div>
 </div>
 
 
 @foreach($posts as $post)
+@if(auth()->user()->id !== $post->user->id)
 <div class="post-list">
     <div class="post-content">
         <div class="post-img"><img src="{{ asset('storage/images/' . $post->user->images) }}" class= "photo-size"></div>
@@ -24,6 +27,7 @@
         </div>
     </div>
 </div>
+@endif
 @endforeach
 
 @endsection

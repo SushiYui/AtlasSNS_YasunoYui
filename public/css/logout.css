@@ -12,7 +12,7 @@ body{
     align-items: center;
     min-height: 100vh;
     color: white;
-    background-image:linear-gradient(0deg, rgb(252, 252, 123), rgb(71, 211, 249));
+    background:linear-gradient(rgb(15, 102, 252), rgb(221, 198, 48));
 }
 
 .main-title{
@@ -34,11 +34,17 @@ body{
     max-width: 280px;
     margin-top: 20px;
     padding: 25px;
-    background:rgba(100,149,237,0.3);
+    background:rgba(61, 87, 135, 0.3);
 }
 
 .welcome{
     text-align: center;
+}
+
+.add-welcome{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 
@@ -64,17 +70,17 @@ body{
 
 input[type="submit"], .btn{
     margin: 15px 0;
-    background-color: #4169e1;
+    background-color: red;
     color: aliceblue;
     width: 40%;
     border-radius: 5px;
     padding: 5px 5px;
-    border: 1px solid #4169e1;
+    border: 1px solid red;
 }
 
 input[type="submit"]:hover{
     background-color: aliceblue;
-    color: #4169e1;
+    color: red;
     font-weight: bold;
     border: 1px solid aliceblue;
     box-shadow: 2px 2px 4px;
@@ -96,11 +102,12 @@ input[type="submit"]:hover{
 
 .welcome-text{
     margin: 15px 0;
+    text-align: center;
 }
 
 .btn:hover{
     background-color: aliceblue;
-    color: #4169e1;
+    color: red;
     font-weight: bold;
     border: 1px solid aliceblue;
     box-shadow: 2px 2px 4px;

@@ -17,7 +17,6 @@ class PostsController extends Controller
         ->join('posts', 'users.id', '=', 'posts.user_id')
         ->select('users.username', 'images', 'posts.id' , 'posts.user_id', 'posts.created_at', 'posts.post')
         ->get();
-        // dd($results);
 
         return view('posts.index')->with(compact('results'));
     }
@@ -26,14 +25,18 @@ class PostsController extends Controller
     public function tweet(Request $request){
         if($request->isMethod('post')){
 
+            // 送信されたデータが正しいかどうかチェック！
+            // もし条件に合わない場合は自動的に元のページに戻ってエラーがでる
+            $validatedData =$request->validate([
+                'content' =>'required|string|min:1|max:150',
+            ]);
+
             // ログインしているユーザー情報も取ってくる
             $user = Auth::user();
-            $post = $request->input('content');
-            // dd($user, $post);
 
             Post::create([
                 'user_id' => $user->id,
-                'post' => $post,
+                'post' => $validatedData['content'],
             ]);
 
             return redirect('/top');

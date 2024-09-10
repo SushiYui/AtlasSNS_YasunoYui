@@ -84,7 +84,6 @@ class FollowsController extends Controller
         // その投稿を作成したユーザー情報も一緒に取得
         ->with('user')
         ->get();
-        // dd($posts);
 
 
         return view('follows.followList', compact('followingList','posts'));

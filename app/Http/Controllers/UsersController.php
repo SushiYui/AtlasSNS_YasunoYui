@@ -8,6 +8,7 @@ use App\Follow;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -25,21 +26,30 @@ class UsersController extends Controller
 
         // バリデーションの設定
         $request->validate([
-            'username' => 'required|string|max:255',
-            'mail' => 'required|string|email|max:255',
-            'password' => 'nullable|string|max:255',
-            'bio' => 'nullable|string|max:400',
-            'images' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            'username' =>'required|string|min:2|max:12',
+            'mail' =>['required','string','email','min:5','max:40',
+            Rule::unique('users')->ignore(auth()->user()->id)],
+            'password' => ['required', 'string', 'min:8', 'max:20', 'confirmed',
+            function($attribute, $value, $fail){
+                if(!Hash::check($value, auth()->user()->password)){
+                    $fail('現在のパスワードが間違っています');
+                }
+            }],
+            'bio' => 'nullable|string|max:150',
+            'images' => 'nullable|image|mimes:jpg,jpeg,png,bmp,gif,svg|max:2048',
         ]);
 
         $user = Auth::user();
 
+
         // パスワードとパスワード確認が一致するかどうかをチェック
+    if($request->filled('password')) {
         if($request->input('password') === $request->input('password_1')){
             $user->password = Hash::make($request->input('password'));
         }else{
             return redirect()->back()->withErrors(['password' => 'パスワードが一致しません']);
         }
+    }
 
         $user->username = $request->input('username');
         $user->mail = $request->input('mail');
@@ -59,23 +69,21 @@ class UsersController extends Controller
         // （今回は'public/images'）に画像を保存している
         $path = $request->file('images')->storeAs('public/images',$newPhoto);
 
-        // dd($path);
 
         if($user->images) {
             Storage::delete('public/images/' . $user->images);
         }
-        
+
         // 登録するのに必要な項目を代入
         $user->images = $newPhoto;
         }
-        
+
         $user->save();
 
         Auth::setUser($user);
-        // dd($user);
-        
+
         return redirect('/top');
-        
+
 
     }
 
@@ -83,11 +91,9 @@ class UsersController extends Controller
     // 検索処理の実施
     public function search(Request $request)
     {
-        // dd($request->all());
 
         $keyword = $request->input('keyword');
         // 検索ワードを一時的に記録する
-        // $searchHistory = $request->session()->get('search_history', []);
         if(!empty($keyword)){
 
             $users = User::where('username', 'like', '%' . $keyword . '%')->get();
@@ -116,5 +122,5 @@ class UsersController extends Controller
 
         return view('users.friendProfile', compact('user'));
     }
-    
+
 }

@@ -42,14 +42,20 @@ class RegisterController extends Controller
     public function register(Request $request){
         if($request->isMethod('post')){
 
+            $validatedData =$request->validate([
+                'username' =>'required|string|min:2|max:12',
+                'mail' =>'required|string|email|min:5|max:40|unique:users,mail',
+                'password' =>'required|string|min:8|max:20|confirmed',
+            ]);
+            
             $username = $request->input('username');
             $mail = $request->input('mail');
             $password = $request->input('password');
 
             User::create([
-                'username' => $username,
-                'mail' => $mail,
-                'password' => bcrypt($password),
+                'username' => $validatedData['username'],
+                'mail' => $validatedData['mail'],
+                'password' => bcrypt($validatedData['password']),
             ]);
 
             return redirect('added')->with('username',$username);

@@ -8,12 +8,17 @@
    {!! Form::image(asset('images/search.png'), 'submit', ['class' => 'search-submit']) !!}
    {!! Form::close() !!}
 
-<p>{{ $keyword }}</p>
+   {{-- $keywordが空ではない時に表示させるようにする。 --}}
+@if(!empty($keyword))
+<p>検索ワード：{{ $keyword }}</p>
+@endif
 
 </div>
 
 <div class="search-list">
 @foreach ($users as $user)
+{{-- ログインユーザー以外のユーザーを一覧表示したい --}}
+@if(auth()->user()->id !== $user->id)
     <div class="search-user">
     <img src="{{ asset('storage/images/' . $user->images) }}" class= "photo-size">
     <p>{{ $user->username }}</p>
@@ -37,6 +42,7 @@
      {!! Form::close() !!}
     </div>
 
+@endif
 @endforeach
 </div>
 
