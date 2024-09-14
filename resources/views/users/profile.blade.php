@@ -3,8 +3,12 @@
 @section('content')
 
 <div class="profile-content">
-    <img src="{{ asset('storage/images/' . Auth::user()->images) }}" class= "photo-size">
-{!! Form::open(['url' => '/users/profile', 'method' => 'POST' , 'files' => true]) !!}
+    @if(Auth::user()->images !== 'icon1.png')
+    <img src="{{ asset('storage/images/' . Auth::user()->images) }}" class="photo-size">
+    @else
+    <img src="{{ asset('images/icon1.png') }}" class="photo-size">
+    @endif
+    {!! Form::open(['url' => '/users/profile', 'method' => 'POST' , 'files' => true]) !!}
 @csrf
    <div class="profile-user">
    <p class="title">ユーザー名</p>
@@ -35,7 +39,7 @@
    <div class="profile-user">
    <p class="title">パスワード</p>
    {!! Form::password('password',  ['placeholder' => 'パスワード',
-   'minlength' => 8, 'maxlength' => 20,
+   'minlength' => 8,
    'pattern' => '[a-zA-Z0-9]+', 'title' =>'8文字以上20文字以内の英数字を入力してください']) !!}
    </div>
 
@@ -48,8 +52,8 @@
 
    <div class="profile-user">
    <p class="title">パスワード確認</p>
-   {!! Form::password('password_1',  ['placeholder' => 'パスワード確認',
-   'minlength' => 8, 'maxlength' => 20,
+   {!! Form::password('password_confirmation',  ['placeholder' => 'パスワード確認',
+   'minlength' => 8,
    'pattern' => '[a-zA-Z0-9]+', 'title' =>'8文字以上20文字以内の英数字を入力してください']) !!}
    </div>
 

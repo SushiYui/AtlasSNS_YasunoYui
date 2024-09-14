@@ -44,7 +44,7 @@ class UsersController extends Controller
 
         // パスワードとパスワード確認が一致するかどうかをチェック
     if($request->filled('password')) {
-        if($request->input('password') === $request->input('password_1')){
+        if($request->input('password') === $request->input('password_confirmation')){
             $user->password = Hash::make($request->input('password'));
         }else{
             return redirect()->back()->withErrors(['password' => 'パスワードが一致しません']);

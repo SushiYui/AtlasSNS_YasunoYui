@@ -27,7 +27,14 @@
         <div class="header-content">
           <div class="login-user">
             <p class="login-username">{{ Auth::user()->username }}さん</p>
-            <a href="/top" class="login-photo"><img src="{{ asset('storage/images/' . Auth::user()->images) }}" class= "photo-size"></a>
+            <a href="/top" class="login-photo">
+                @if(Auth::user()->images !== 'icon1.png')
+                <img src="{{ asset('storage/images/' . Auth::user()->images) }}" class="photo-size">
+                @else
+                <img src="{{ asset('images/icon1.png') }}" class="photo-size">
+                @endif
+
+            </a>
           </div>
 
             <div class="pulldown-content">

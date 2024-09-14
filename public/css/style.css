@@ -160,6 +160,10 @@ header{
 .post{
     padding: 5px;
     margin: 0 55px 0 10px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+    width: 100%;
 }
 
 .post-btn{
@@ -253,6 +257,7 @@ textarea{
     resize: none;
     height: 10vh;
     margin-right: 10px;
+    word-wrap: break-word;
 }
 
 

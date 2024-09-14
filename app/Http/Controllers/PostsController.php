@@ -23,6 +23,7 @@ class PostsController extends Controller
 
 
     public function tweet(Request $request){
+        // dd($request);
         if($request->isMethod('post')){
 
             // 送信されたデータが正しいかどうかチェック！
@@ -57,7 +58,7 @@ class PostsController extends Controller
     public function update(Request $request, $id){
 
         $request->validate([
-            'content' => 'required|max:150',
+            'content' => 'required|string|min:1|max:150',
         ]);
 
         $post = Post::findOrFail($id);

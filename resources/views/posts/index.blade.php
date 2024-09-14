@@ -3,21 +3,39 @@
 @section('content')
 <div class="new-post">
 <!-- Form::openは、新しいフォームを開始し、URLやメソッドなどの基本的な設定を行う。 -->
-<img src="{{ asset('storage/images/' . Auth::user()->images) }}" class= "photo-size">
+@if(Auth::user()->images !== 'icon1.png')
+<img src="{{ asset('storage/images/' . Auth::user()->images) }}" class="photo-size">
+@else
+<img src="{{ asset('images/icon1.png') }}" class="photo-size">
+@endif
+
 {!! Form::open(['url' => '/index' , 'method' => 'POST' , 'class' => 'tweet'])!!}
 {!! Form::textarea('content', null, ['placeholder' => '投稿内容を入力してください' ,
-'requied' => true, 'minlength' => "1", 'maxlength'=>"150"]) !!}
+'required' => true, 'minlength' => "1"]) !!}
 {!! Form::image(asset('images/post.png'), 'submit', ['class' => 'image-submit']) !!}
 {!! Form::close() !!}
+
+
+@if($errors->has('content'))
+@foreach ($errors->get('content') as $error )
+<div class="error-message">{{ $error }}</div>
+@endforeach
+@endif
 </div>
+
 
 
     @foreach ($results as $result)
     <div class="post-list">
 
     <div class="post-content">
-       <div class="post-img"><img src="{{ asset('storage/images/' . $result->images) }}" class= "photo-size"></div>
-       <div class="post-box">
+        @if( $result->images !== 'icon1.png')
+        <img src="{{ asset('storage/images/' . $result->images) }}" class="photo-size">
+        @else
+        <img src="{{ asset('images/icon1.png') }}" class="photo-size">
+        @endif
+
+        <div class="post-box">
        <p class="username">{{ $result->username }}</p>
        <p class="post-time">{{ \Carbon\Carbon::parse($result->created_at)->format('Y-m-d H:i') }}</p>
        <p class="post">{{ $result->post }}</p>
@@ -48,7 +66,7 @@
         @csrf
         {{-- 投稿の更新（編集）を示す --}}
         @method('PUT')
-        {!! Form::textarea('content', null, ['rows' => 10, 'cols' => 50, 'id'=>'content', 'maxlength' => 150] ) !!}
+        {!! Form::textarea('content', null, ['rows' => 10, 'cols' => 50, 'id'=>'content'] ) !!}
         <div class="edit-box">
         {!! Form::image(asset('images/edit.png'), 'submit', ['class' => 'edit-submit']) !!}
         </div>

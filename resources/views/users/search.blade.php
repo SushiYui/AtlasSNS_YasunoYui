@@ -20,7 +20,11 @@
 {{-- ログインユーザー以外のユーザーを一覧表示したい --}}
 @if(auth()->user()->id !== $user->id)
     <div class="search-user">
-    <img src="{{ asset('storage/images/' . $user->images) }}" class= "photo-size">
+        @if( $user->images !== 'icon1.png')
+        <img src="{{ asset('storage/images/' . $user->images) }}" class="photo-size">
+        @else
+        <img src="{{ asset('images/icon1.png') }}" class="photo-size">
+        @endif
     <p>{{ $user->username }}</p>
 
 
